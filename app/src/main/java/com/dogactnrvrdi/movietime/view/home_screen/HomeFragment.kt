@@ -1,14 +1,15 @@
-package com.dogactnrvrdi.movietime.view.HomeScreen
+package com.dogactnrvrdi.movietime.view.home_screen
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dogactnrvrdi.movietime.R
 import com.dogactnrvrdi.movietime.databinding.FragmentHomeBinding
-import com.dogactnrvrdi.movietime.view.HomeScreen.adapter.TopRatedMoviesAdapter
-import com.dogactnrvrdi.movietime.view.HomeScreen.viewmodel.HomeViewModel
+import com.dogactnrvrdi.movietime.view.home_screen.adapter.TopRatedMoviesAdapter
+import com.dogactnrvrdi.movietime.view.home_screen.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,6 +48,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 false
             )
             adapter = topRatedMoviesAdapter
+        }
+
+        topRatedMoviesAdapter.setOnItemClickListener { movie ->
+            val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailsFragment(
+                movieId = movie.id.toString(),
+                movieName = movie.title,
+                movieReleaseDate = movie.release_date,
+                movieOverview = movie.overview,
+                movieOriginalLanguage = movie.original_language,
+                moviePosterPath = movie.poster_path
+            )
+            findNavController().navigate(action)
         }
     }
 

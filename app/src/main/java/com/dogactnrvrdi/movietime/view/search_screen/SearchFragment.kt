@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.view.SearchScreen
+package com.dogactnrvrdi.movietime.view.search_screen
 
 import android.os.Bundle
 import android.view.View

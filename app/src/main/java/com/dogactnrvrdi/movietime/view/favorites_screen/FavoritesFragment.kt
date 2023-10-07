@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.view.FavoritesScreen
+package com.dogactnrvrdi.movietime.view.favorites_screen
 
 import android.os.Bundle
 import android.view.View

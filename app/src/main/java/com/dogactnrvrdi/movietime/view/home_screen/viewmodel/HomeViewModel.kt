@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.view.HomeScreen.viewmodel
+package com.dogactnrvrdi.movietime.view.home_screen.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.view.HomeScreen.adapter
+package com.dogactnrvrdi.movietime.view.home_screen.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
