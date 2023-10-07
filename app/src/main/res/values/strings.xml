@@ -8,4 +8,6 @@
     <string name="search_something">Search something…</string>
     <string name="favorites">Favorites</string>
     <string name="search">Search</string>
+    <string name="movie_poster">Movie poster</string>
+    <string name="movie_name">Movie name</string>
 </resources>
