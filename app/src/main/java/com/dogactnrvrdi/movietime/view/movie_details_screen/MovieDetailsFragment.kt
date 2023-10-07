@@ -8,7 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.RequestManager
 import com.dogactnrvrdi.movietime.R
 import com.dogactnrvrdi.movietime.databinding.FragmentMovieDetailsBinding
-import com.dogactnrvrdi.movietime.util.Constants.IMAGE_BASE_URL
+import com.dogactnrvrdi.movietime.util.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.view.movie_details_screen.viewmodel.MovieDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -52,7 +52,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         viewModel.movie.observe(viewLifecycleOwner) { movie ->
             binding.apply {
                 tvMovieName.text = movie.title
-                glide.load(IMAGE_BASE_URL + posterPath).into(ivMoviePoster)
+                glide.load(BASE_IMAGE_URL + posterPath).into(ivMoviePoster)
                 tvMovieOriginalLanguage.text = originalLanguage
                 tvMovieReleaseDate.text = releaseDate
                 tvMovieOverview.text = overview

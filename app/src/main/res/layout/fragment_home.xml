@@ -94,7 +94,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvPopularMovies"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_130sdp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp" />
 
                 </LinearLayout>
@@ -129,7 +129,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvUpcomingMovies"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_130sdp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp" />
 
                 </LinearLayout>

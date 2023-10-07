@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dogactnrvrdi.movietime.databinding.TopRatedMoviesItemRowBinding
 import com.dogactnrvrdi.movietime.model.toprated.TopRatedResult
-import com.dogactnrvrdi.movietime.util.Constants.IMAGE_BASE_URL
+import com.dogactnrvrdi.movietime.util.Constants.BASE_IMAGE_URL
 
 class TopRatedMoviesAdapter :
     RecyclerView.Adapter<TopRatedMoviesAdapter.TopRatedMoviesViewHolder>() {
@@ -20,7 +20,7 @@ class TopRatedMoviesAdapter :
         fun bind(topRatedMovies: TopRatedResult, context: Context) {
             binding.apply {
                 tvMovieName.text = topRatedMovies.title
-                Glide.with(context).load(IMAGE_BASE_URL + topRatedMovies.poster_path).into(ivPoster)
+                Glide.with(context).load(BASE_IMAGE_URL + topRatedMovies.poster_path).into(ivPoster)
             }
         }
     }
