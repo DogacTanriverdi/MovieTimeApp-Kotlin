@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MovieTime</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
+    <string name="home">Home</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="back_button">Back button</string>
+    <string name="search_something">Search something…</string>
+    <string name="favorites">Favorites</string>
 </resources>
