@@ -1,5 +1,6 @@
 package com.dogactnrvrdi.movietime.repo
 
+import androidx.lifecycle.LiveData
 import com.dogactnrvrdi.movietime.model.movie_details.MovieDetails
 import com.dogactnrvrdi.movietime.model.popular.PopularMovies
 import com.dogactnrvrdi.movietime.model.toprated.TopRatedMovies
@@ -11,4 +12,7 @@ interface IMovieRepository {
     suspend fun getUpcomingMovies(): UpcomingMovies
     suspend fun getMovieDetails(id: String): MovieDetails
     suspend fun searchMovies(searchQuery: String): MovieDetails
+    suspend fun insertMovie(movie: MovieDetails)
+    suspend fun deleteMovie(movie: MovieDetails)
+    fun getAllMovies(): LiveData<List<MovieDetails>>
 }

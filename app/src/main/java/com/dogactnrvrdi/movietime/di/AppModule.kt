@@ -1,9 +1,12 @@
 package com.dogactnrvrdi.movietime.di
 
 import android.content.Context
+import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dogactnrvrdi.movietime.R
+import com.dogactnrvrdi.movietime.local.IMovieDao
+import com.dogactnrvrdi.movietime.local.MovieDatabase
 import com.dogactnrvrdi.movietime.remote.IMovieApi
 import com.dogactnrvrdi.movietime.repo.IMovieRepository
 import com.dogactnrvrdi.movietime.repo.MovieRepositoryImpl
@@ -32,7 +35,10 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMovieRepository(api: IMovieApi) : IMovieRepository = MovieRepositoryImpl(api)
+    fun provideMovieRepository(
+        api: IMovieApi,
+        dao: IMovieDao
+    ): IMovieRepository = MovieRepositoryImpl(api, dao)
 
     @Singleton
     @Provides
@@ -41,4 +47,19 @@ object AppModule {
             RequestOptions().placeholder(R.color.grey)
                 .error(R.color.hint_grey)
         )
+
+    @Singleton
+    @Provides
+    fun provideMovieDatabase(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(
+        context,
+        MovieDatabase::class.java,
+        "movieDb"
+    ).allowMainThreadQueries()
+        .build()
+
+    @Singleton
+    @Provides
+    fun provideMovieDao(db: MovieDatabase) = db.getMovieDao()
 }

@@ -54,7 +54,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             searchAdapter.recyclerListDiffer.submitList(movie)
         }
 
-        // Back Button
+        // On Back Button Clicked
         binding.ibBack.setOnClickListener {
             findNavController().popBackStack()
         }
