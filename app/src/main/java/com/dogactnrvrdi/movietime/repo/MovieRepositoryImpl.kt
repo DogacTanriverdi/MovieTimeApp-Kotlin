@@ -14,4 +14,6 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getPopularMovies(): PopularMovies = api.getPopularMovies()
     override suspend fun getUpcomingMovies(): UpcomingMovies = api.getUpcomingMovies()
     override suspend fun getMovieDetails(id: String): MovieDetails = api.getMovieDetails(id)
+    override suspend fun searchMovies(searchQuery: String): MovieDetails =
+        api.searchMovies(searchQuery)
 }

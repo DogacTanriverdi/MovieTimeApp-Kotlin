@@ -18,15 +18,15 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     // Top Rated Movies
-    private var _topRated = MutableLiveData<TopRatedMovies>()
+    private val _topRated = MutableLiveData<TopRatedMovies>()
     val topRated: LiveData<TopRatedMovies> get() = _topRated
 
     // Popular Movies
-    private var _popular = MutableLiveData<PopularMovies>()
+    private val _popular = MutableLiveData<PopularMovies>()
     val popular: LiveData<PopularMovies> get() = _popular
 
     // Upcoming Movies
-    private var _upcoming = MutableLiveData<UpcomingMovies>()
+    private val _upcoming = MutableLiveData<UpcomingMovies>()
     val upcoming: LiveData<UpcomingMovies> get() = _upcoming
 
 

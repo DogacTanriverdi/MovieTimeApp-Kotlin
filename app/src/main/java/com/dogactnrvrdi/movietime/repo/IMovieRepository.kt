@@ -10,4 +10,5 @@ interface IMovieRepository {
     suspend fun getPopularMovies(): PopularMovies
     suspend fun getUpcomingMovies(): UpcomingMovies
     suspend fun getMovieDetails(id: String): MovieDetails
+    suspend fun searchMovies(searchQuery: String): MovieDetails
 }

@@ -10,24 +10,30 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface IMovieApi {
-    @GET("top_rated")
+    @GET("movie/top_rated")
     suspend fun getTopRatedMovies(
         @Query("api_key") apiKey: String = API_KEY
     ): TopRatedMovies
 
-    @GET("popular")
+    @GET("movie/popular")
     suspend fun getPopularMovies(
         @Query("api_key") apiKey: String = API_KEY
     ) : PopularMovies
 
-    @GET("upcoming")
+    @GET("movie/upcoming")
     suspend fun getUpcomingMovies(
         @Query("api_key") apiKey: String = API_KEY
     ) : UpcomingMovies
 
-    @GET("{id}")
+    @GET("movie/{id}")
     suspend fun getMovieDetails(
         @Path("id") id: String,
+        @Query("api_key") apiKey: String = API_KEY
+    ) : MovieDetails
+
+    @GET("search/movie")
+    suspend fun searchMovies(
+        @Query("query") searchQuery: String,
         @Query("api_key") apiKey: String = API_KEY
     ) : MovieDetails
 }
