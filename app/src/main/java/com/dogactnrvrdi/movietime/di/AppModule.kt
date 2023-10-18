@@ -4,41 +4,67 @@ import android.content.Context
 import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.dogactnrvrdi.movietime.R
-import com.dogactnrvrdi.movietime.local.IMovieDao
-import com.dogactnrvrdi.movietime.local.MovieDatabase
-import com.dogactnrvrdi.movietime.remote.IMovieApi
-import com.dogactnrvrdi.movietime.repo.IMovieRepository
-import com.dogactnrvrdi.movietime.repo.MovieRepositoryImpl
-import com.dogactnrvrdi.movietime.util.Constants.BASE_URL
+import com.dogactnrvrdi.movietime.common.Constants.BASE_URL
+import com.dogactnrvrdi.movietime.data.source.local.IMovieDao
+import com.dogactnrvrdi.movietime.data.source.local.MovieDatabase
+import com.dogactnrvrdi.movietime.data.repo.MovieRepositoryImpl
+import com.dogactnrvrdi.movietime.data.source.remote.MovieApi
+import com.dogactnrvrdi.movietime.domain.repo.MovieRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    /*
+    @Provides
+    @Singleton
+    fun provideChuckerInterceptor(@ApplicationContext context: Context) = ChuckerInterceptor.Builder(context).build()
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(chuckerInterceptor: ChuckerInterceptor) = OkHttpClient.Builder().apply {
+        addInterceptor(
+            Interceptor { chain ->
+                val builder = chain.request().newBuilder()
+                return@Interceptor chain.proceed(builder.build())
+            }
+        )
+        addInterceptor(chuckerInterceptor)
+        readTimeout(60, TimeUnit.SECONDS)
+        connectTimeout(60, TimeUnit.SECONDS)
+        writeTimeout(60, TimeUnit.SECONDS)
+    }.build()
+
+     */
+
     @Singleton
     @Provides
-    fun provieMovieApi(): IMovieApi =
+    fun provieMovieApi(): MovieApi =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(IMovieApi::class.java)
+            .create(MovieApi::class.java)
 
     @Singleton
     @Provides
     fun provideMovieRepository(
-        api: IMovieApi,
+        api: MovieApi,
         dao: IMovieDao
-    ): IMovieRepository = MovieRepositoryImpl(api, dao)
+    ): MovieRepository = MovieRepositoryImpl(api, dao)
 
     @Singleton
     @Provides

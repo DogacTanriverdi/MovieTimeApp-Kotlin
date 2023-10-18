@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/_100sdp"
     android:layout_height="@dimen/_170sdp"
-    android:layout_margin="@dimen/_5sdp"
+    android:layout_margin="@dimen/_10sdp"
     android:orientation="vertical">
 
     <ImageView
@@ -17,8 +17,11 @@
     <TextView
         android:id="@+id/tvMovieName"
         android:layout_width="wrap_content"
+        android:textColor="@color/text_color"
         android:layout_height="@dimen/_20sdp"
         android:textSize="@dimen/_15ssp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/movie_name"
         android:layout_gravity="center"
