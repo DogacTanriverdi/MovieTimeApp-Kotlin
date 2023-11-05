@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.ui.search
+package com.dogactnrvrdi.movietime.presentation.search
 
 import android.os.Bundle
 import android.view.View
@@ -63,7 +63,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                 movieReleaseDate = movie.releaseDate,
                 movieOverview = movie.overview,
                 movieOriginalLanguage = movie.originalLanguage,
-                moviePosterPath = movie.posterPath
+                moviePosterPath = movie.posterPath,
+                movieOriginalTitle = movie.originalTitle
             )
             findNavController().navigate(action)
         }

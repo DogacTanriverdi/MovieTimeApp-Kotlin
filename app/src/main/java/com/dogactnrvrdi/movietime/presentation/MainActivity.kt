@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.ui
+package com.dogactnrvrdi.movietime.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

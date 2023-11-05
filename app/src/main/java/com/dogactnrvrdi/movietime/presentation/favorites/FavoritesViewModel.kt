@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.ui.favorites
+package com.dogactnrvrdi.movietime.presentation.favorites
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

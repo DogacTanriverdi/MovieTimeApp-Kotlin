@@ -8,12 +8,20 @@ import com.dogactnrvrdi.movietime.data.model.toprated.TopRatedMovies
 import com.dogactnrvrdi.movietime.data.model.upcoming.UpcomingMovies
 
 interface MovieRepository {
-    suspend fun getTopRatedMovies(): TopRatedMovies
-    suspend fun getPopularMovies(): PopularMovies
-    suspend fun getUpcomingMovies(): UpcomingMovies
-    suspend fun getMovieDetails(id: String): Movie
-    suspend fun searchMovies(searchQuery: String): SearchMovies
+
+    suspend fun getTopRatedMovies(language: String): TopRatedMovies
+
+    suspend fun getPopularMovies(language: String): PopularMovies
+
+    suspend fun getUpcomingMovies(language: String): UpcomingMovies
+
+    suspend fun getMovieDetails(id: String, language: String): Movie
+
+    suspend fun searchMovies(searchQuery: String, language: String): SearchMovies
+
     suspend fun insertMovie(movie: Movie)
+
     suspend fun deleteMovie(movie: Movie)
+
     fun getAllMovies(): LiveData<List<Movie>>
 }

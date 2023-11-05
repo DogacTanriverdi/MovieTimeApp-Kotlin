@@ -13,28 +13,33 @@ import retrofit2.http.Query
 interface MovieApi {
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(
+        @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
     ): TopRatedMovies
 
     @GET("movie/popular")
     suspend fun getPopularMovies(
+        @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
     ) : PopularMovies
 
     @GET("movie/upcoming")
     suspend fun getUpcomingMovies(
+        @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
     ) : UpcomingMovies
 
     @GET("movie/{id}")
     suspend fun getMovieDetails(
         @Path("id") id: String,
+        @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
     ) : Movie
 
     @GET("search/movie")
     suspend fun searchMovies(
         @Query("query") searchQuery: String,
+        @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
     ) : SearchMovies
 }

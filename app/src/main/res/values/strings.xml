@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieTime</string>
+    <string name="app_name">Movie Time</string>
     <string name="top_rated_movies">Top Rated Movies</string>
     <string name="home">Home</string>
     <string name="popular_movies">Popular Movies</string>
@@ -11,9 +11,10 @@
     <string name="movie_poster">Movie poster</string>
     <string name="movie_name">Movie name</string>
     <string name="release_date">Release date</string>
-    <string name="language">Language</string>
+    <string name="original_language">Original language</string>
     <string name="overview">Overview</string>
     <string name="movie_saved_successfully">Movie saved successfully</string>
     <string name="movie_deleted_successfully">Movie deleted successfully</string>
-    <string name="add_favorite_button">Add favorite button</string>
+    <string name="add_to_favorites_button">Add to favorites button</string>
+    <string name="original_title">Original title</string>
 </resources>

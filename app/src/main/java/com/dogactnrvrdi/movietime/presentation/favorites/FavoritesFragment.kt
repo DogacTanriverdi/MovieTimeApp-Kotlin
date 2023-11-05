@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.ui.favorites
+package com.dogactnrvrdi.movietime.presentation.favorites
 
 import android.os.Bundle
 import android.view.View
@@ -48,7 +48,8 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
                 movieReleaseDate = movie.releaseDate,
                 movieOverview = movie.overview,
                 movieOriginalLanguage = movie.originalLanguage,
-                moviePosterPath = movie.posterPath
+                moviePosterPath = movie.posterPath,
+                movieOriginalTitle = movie.originalTitle
             )
             findNavController().navigate(action)
         }

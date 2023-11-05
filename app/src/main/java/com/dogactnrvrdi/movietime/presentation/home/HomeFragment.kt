@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.ui.home
+package com.dogactnrvrdi.movietime.presentation.home
 
 import android.os.Bundle
 import android.view.View
@@ -62,7 +62,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 movieReleaseDate = movie.releaseDate,
                 movieOverview = movie.overview,
                 movieOriginalLanguage = movie.originalLanguage,
-                moviePosterPath = movie.posterPath
+                moviePosterPath = movie.posterPath,
+                movieOriginalTitle = movie.originalTitle
             )
             findNavController().navigate(action)
         }
@@ -80,7 +81,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 movieReleaseDate = movie.releaseDate,
                 movieOverview = movie.overview,
                 movieOriginalLanguage = movie.originalLanguage,
-                moviePosterPath = movie.posterPath
+                moviePosterPath = movie.posterPath,
+                movieOriginalTitle = movie.originalTitle
             )
             findNavController().navigate(action)
         }
@@ -96,7 +98,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 movieReleaseDate = movie.releaseDate,
                 movieOverview = movie.overview,
                 movieOriginalLanguage = movie.originalLanguage,
-                moviePosterPath = movie.posterPath
+                moviePosterPath = movie.posterPath,
+                movieOriginalTitle = movie.originalTitle
             )
             findNavController().navigate(action)
         }

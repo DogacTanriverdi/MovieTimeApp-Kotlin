@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.ui.detail
+package com.dogactnrvrdi.movietime.presentation.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +8,7 @@ import com.dogactnrvrdi.movietime.data.model.Movie
 import com.dogactnrvrdi.movietime.domain.repo.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,7 +22,7 @@ class MovieDetailsViewModel @Inject constructor(
 
     fun getMovieDetails(id: String) {
         viewModelScope.launch {
-            repo.getMovieDetails(id).let { movie ->
+            repo.getMovieDetails(id, language = Locale.getDefault().language).let { movie ->
                 _movie.value = movie
             }
         }

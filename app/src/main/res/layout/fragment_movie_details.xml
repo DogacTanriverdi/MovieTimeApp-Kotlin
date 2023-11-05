@@ -5,7 +5,7 @@
     android:background="@color/background_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.details.MovieDetailsFragment">
+    tools:context=".presentation.details.MovieDetailsFragment">
 
     <ImageButton
         android:id="@+id/ibBack"
@@ -73,7 +73,7 @@
             android:id="@+id/fabAddFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/add_favorite_button"
+            android:contentDescription="@string/add_to_favorites_button"
             android:src="@drawable/ic_favorite"
             app:backgroundTint="@color/primary_color"
             app:layout_anchor="@id/ivMoviePoster"
@@ -103,10 +103,22 @@
                         android:src="@drawable/bg_search_box" />
 
                     <TextView
-                        android:id="@+id/tvMovieReleaseDate"
+                        android:id="@+id/tvMovieOriginalTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_30sdp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:textColor="@color/text_color"
+                        android:gravity="center"
+                        android:text="@string/original_title"
+                        android:textSize="@dimen/_17ssp" />
+
+                    <TextView
+                        android:id="@+id/tvMovieReleaseDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/roboto_medium"
                         android:paddingStart="@dimen/_10sdp"
                         android:textColor="@color/text_color"
@@ -122,7 +134,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:gravity="center"
                         android:textColor="@color/text_color"
-                        android:text="@string/language"
+                        android:text="@string/original_language"
                         android:textSize="@dimen/_17ssp" />
 
                     <TextView

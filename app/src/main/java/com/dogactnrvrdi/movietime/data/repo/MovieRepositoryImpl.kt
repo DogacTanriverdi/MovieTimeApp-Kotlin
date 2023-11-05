@@ -15,12 +15,21 @@ class MovieRepositoryImpl @Inject constructor(
     private val api: MovieApi,
     private val dao: IMovieDao
 ) : MovieRepository {
-    override suspend fun getTopRatedMovies(): TopRatedMovies = api.getTopRatedMovies()
-    override suspend fun getPopularMovies(): PopularMovies = api.getPopularMovies()
-    override suspend fun getUpcomingMovies(): UpcomingMovies = api.getUpcomingMovies()
-    override suspend fun getMovieDetails(id: String): Movie = api.getMovieDetails(id)
-    override suspend fun searchMovies(searchQuery: String): SearchMovies =
-        api.searchMovies(searchQuery)
+
+    override suspend fun getTopRatedMovies(language: String): TopRatedMovies =
+        api.getTopRatedMovies(language = language)
+
+    override suspend fun getPopularMovies(language: String): PopularMovies =
+        api.getPopularMovies(language = language)
+
+    override suspend fun getUpcomingMovies(language: String): UpcomingMovies =
+        api.getUpcomingMovies(language = language)
+
+    override suspend fun getMovieDetails(id: String, language: String): Movie =
+        api.getMovieDetails(id, language = language)
+
+    override suspend fun searchMovies(searchQuery: String, language: String): SearchMovies =
+        api.searchMovies(searchQuery, language = language)
 
     override suspend fun insertMovie(movie: Movie) = dao.insertMovie(movie)
 

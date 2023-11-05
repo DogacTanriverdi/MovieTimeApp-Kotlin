@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.ui.search
+package com.dogactnrvrdi.movietime.presentation.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +9,7 @@ import com.dogactnrvrdi.movietime.domain.repo.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,7 +24,7 @@ class SearchViewModel @Inject constructor(
     fun searchMovies(searchQuery: String) {
         viewModelScope.launch {
             delay(500)
-            repo.searchMovies(searchQuery).let { movie ->
+            repo.searchMovies(searchQuery, language = Locale.getDefault().language).let { movie ->
                 _searchMovie.value = movie
             }
         }

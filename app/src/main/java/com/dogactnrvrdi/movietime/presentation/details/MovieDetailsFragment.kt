@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.ui.details
+package com.dogactnrvrdi.movietime.presentation.details
 
 import android.os.Bundle
 import android.view.View
@@ -11,7 +11,6 @@ import com.bumptech.glide.RequestManager
 import com.dogactnrvrdi.movietime.R
 import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.databinding.FragmentMovieDetailsBinding
-import com.dogactnrvrdi.movietime.ui.detail.MovieDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -44,10 +43,12 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
                     tvMovieName.isSelected = true
                     glide.load(BASE_IMAGE_URL + movie.posterPath).into(ivMoviePoster)
                     tvMovieOriginalLanguage.text =
-                        "${getString(R.string.language)}: ${movie.originalLanguage}"
+                        "${getString(R.string.original_language)}: ${movie.originalLanguage}"
                     tvMovieReleaseDate.text =
                         "${getString(R.string.release_date)}: ${movie.releaseDate}"
                     tvMovieOverview.text = "${getString(R.string.overview)}:\n${movie.overview}"
+                    tvMovieOriginalTitle.text =
+                        "${getString(R.string.original_title)}: ${movie.originalTitle}"
                     hideShimmerEffect()
                 }
 

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Film Vakti</string>
+    <string name="top_rated_movies">En Çok Oy Alan Filmler</string>
+    <string name="home">Ana Sayfa</string>
+    <string name="popular_movies">Popüler Filmler</string>
+    <string name="upcoming_movies">Gelecek Filmler</string>
+    <string name="back_button">Geri butonu</string>
+    <string name="search_something">Bir şey arayın…</string>
+    <string name="favorites">Favoriler</string>
+    <string name="search">Ara</string>
+    <string name="movie_poster">Filmin afişi</string>
+    <string name="movie_name">Filmin adı</string>
+    <string name="release_date">Çıkış tarihi</string>
+    <string name="original_language">Orijinal dili</string>
+    <string name="overview">Genel Bakış</string>
+    <string name="movie_saved_successfully">Film başarıyla kaydedildi</string>
+    <string name="movie_deleted_successfully">Film başarıyla silindi</string>
+    <string name="add_to_favorites_button">Favorilere ekleme butonu</string>
+    <string name="original_title">Orijinal ismi</string>
+</resources>

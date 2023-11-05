@@ -1,31 +1,26 @@
-package com.dogactnrvrdi.movietime.ui.home
+package com.dogactnrvrdi.movietime.presentation.home
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dogactnrvrdi.movietime.databinding.UpcomingMoviesItemRowBinding
+import com.dogactnrvrdi.movietime.databinding.TopRatedMoviesItemRowBinding
 import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.Movie
 
-class UpcomingMoviesAdapter :
-    RecyclerView.Adapter<UpcomingMoviesAdapter.UpcomingMoviesViewHolder>() {
+class TopRatedMoviesAdapter :
+    RecyclerView.Adapter<TopRatedMoviesAdapter.TopRatedMoviesViewHolder>() {
 
-    class UpcomingMoviesViewHolder(
-        private val binding: UpcomingMoviesItemRowBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    class TopRatedMoviesViewHolder(private val binding: TopRatedMoviesItemRowBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(upcomingMovies: Movie, context: Context) {
+        fun bind(topRatedMovies: Movie, context: Context) {
             binding.apply {
-                tvMovieName.text = upcomingMovies.title
-                tvMovieReleaseDate.text = upcomingMovies.releaseDate
-                Glide.with(context)
-                    .load(BASE_IMAGE_URL + upcomingMovies.posterPath)
-                    .into(ivPoster)
+                tvMovieName.text = topRatedMovies.title
+                Glide.with(context).load(BASE_IMAGE_URL + topRatedMovies.posterPath).into(ivPoster)
             }
         }
     }
@@ -48,16 +43,16 @@ class UpcomingMoviesAdapter :
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingMoviesViewHolder {
-        val binding = UpcomingMoviesItemRowBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopRatedMoviesViewHolder {
+        val binding = TopRatedMoviesItemRowBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return UpcomingMoviesViewHolder(binding)
+        return TopRatedMoviesViewHolder(binding)
     }
 
     override fun getItemCount(): Int = movies.size
 
-    override fun onBindViewHolder(holder: UpcomingMoviesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TopRatedMoviesViewHolder, position: Int) {
         val movie = movies[position]
         holder.bind(movie, holder.itemView.context)
         holder.itemView.setOnClickListener {
