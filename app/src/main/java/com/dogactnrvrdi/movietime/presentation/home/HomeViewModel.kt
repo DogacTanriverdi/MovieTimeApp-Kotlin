@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dogactnrvrdi.movietime.data.model.popular.PopularMovies
 import com.dogactnrvrdi.movietime.data.model.toprated.TopRatedMovies
+import com.dogactnrvrdi.movietime.data.model.tv_popular.PopularTvSeries
 import com.dogactnrvrdi.movietime.data.model.upcoming.UpcomingMovies
 import com.dogactnrvrdi.movietime.domain.repo.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,6 +28,9 @@ class HomeViewModel @Inject constructor(
     private val _upcoming = MutableLiveData<UpcomingMovies>()
     val upcoming: LiveData<UpcomingMovies> get() = _upcoming
 
+    private val _popularTvSeries = MutableLiveData<PopularTvSeries>()
+    val popularTvSeries: LiveData<PopularTvSeries> get() = _popularTvSeries
+
     private val language = Locale.getDefault().language
 
 
@@ -34,6 +38,7 @@ class HomeViewModel @Inject constructor(
         getTopRatedMovies()
         getPopularMovies()
         getUpcomingMovies()
+        getPopularTvSeries()
     }
 
     private fun getTopRatedMovies() {
@@ -56,6 +61,14 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             repo.getUpcomingMovies(language).let { upcomingMovies ->
                 _upcoming.value = upcomingMovies
+            }
+        }
+    }
+
+    private fun getPopularTvSeries() {
+        viewModelScope.launch {
+            repo.getPopularTvSeries(language = language).let { popularTvSeries ->
+                _popularTvSeries.value = popularTvSeries
             }
         }
     }

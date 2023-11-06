@@ -25,7 +25,6 @@ class TopRatedMoviesAdapter :
         }
     }
 
-    // Diff Util
     private val diffUtil = object : DiffUtil.ItemCallback<Movie>() {
 
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
@@ -62,7 +61,6 @@ class TopRatedMoviesAdapter :
         }
     }
 
-    // On Item Click Listener
     private var onItemClickListener: ((Movie) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (Movie) -> Unit) {

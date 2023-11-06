@@ -6,6 +6,7 @@ import com.dogactnrvrdi.movietime.data.source.local.IMovieDao
 import com.dogactnrvrdi.movietime.data.model.popular.PopularMovies
 import com.dogactnrvrdi.movietime.data.model.search.SearchMovies
 import com.dogactnrvrdi.movietime.data.model.toprated.TopRatedMovies
+import com.dogactnrvrdi.movietime.data.model.tv_popular.PopularTvSeries
 import com.dogactnrvrdi.movietime.data.model.upcoming.UpcomingMovies
 import com.dogactnrvrdi.movietime.data.source.remote.MovieApi
 import com.dogactnrvrdi.movietime.domain.repo.MovieRepository
@@ -30,6 +31,9 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun searchMovies(searchQuery: String, language: String): SearchMovies =
         api.searchMovies(searchQuery, language = language)
+
+    override suspend fun getPopularTvSeries(language: String): PopularTvSeries =
+        api.getPopularTvSeries(language)
 
     override suspend fun insertMovie(movie: Movie) = dao.insertMovie(movie)
 

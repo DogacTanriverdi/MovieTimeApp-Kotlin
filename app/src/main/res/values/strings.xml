@@ -17,4 +17,7 @@
     <string name="movie_deleted_successfully">Movie deleted successfully</string>
     <string name="add_to_favorites_button">Add to favorites button</string>
     <string name="original_title">Original title</string>
+    <string name="tv_series_poster">Tv series poster</string>
+    <string name="tv_series_name">Tv series name</string>
+    <string name="popular_tv_series">Popular TV Series</string>
 </resources>

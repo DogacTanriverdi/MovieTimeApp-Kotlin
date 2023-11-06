@@ -5,6 +5,7 @@ import com.dogactnrvrdi.movietime.data.model.Movie
 import com.dogactnrvrdi.movietime.data.model.popular.PopularMovies
 import com.dogactnrvrdi.movietime.data.model.search.SearchMovies
 import com.dogactnrvrdi.movietime.data.model.toprated.TopRatedMovies
+import com.dogactnrvrdi.movietime.data.model.tv_popular.PopularTvSeries
 import com.dogactnrvrdi.movietime.data.model.upcoming.UpcomingMovies
 
 interface MovieRepository {
@@ -18,6 +19,8 @@ interface MovieRepository {
     suspend fun getMovieDetails(id: String, language: String): Movie
 
     suspend fun searchMovies(searchQuery: String, language: String): SearchMovies
+
+    suspend fun getPopularTvSeries(language: String): PopularTvSeries
 
     suspend fun insertMovie(movie: Movie)
 

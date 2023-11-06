@@ -17,4 +17,7 @@
     <string name="movie_deleted_successfully">Film başarıyla silindi</string>
     <string name="add_to_favorites_button">Favorilere ekleme butonu</string>
     <string name="original_title">Orijinal ismi</string>
+    <string name="tv_series_poster">Dizinin afişi</string>
+    <string name="tv_series_name">Dizinin ismi</string>
+    <string name="popular_tv_series">Popüler Diziler</string>
 </resources>

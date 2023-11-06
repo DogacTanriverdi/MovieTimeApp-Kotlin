@@ -20,6 +20,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val topRatedMoviesAdapter by lazy { TopRatedMoviesAdapter() }
     private val popularMoviesAdapter by lazy { PopularMoviesAdapter() }
     private val upcomingMoviesAdapter by lazy { UpcomingMoviesAdapter() }
+    private val popularTvSeriesAdapter by lazy { PopularTvSeriesAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +31,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         setupPopularMoviesAdapter()
 
         setupUpcomingMoviesAdapter()
+
+        setupPopularTvSeriesAdapter()
 
         observeDatas()
     }
@@ -48,6 +51,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             upcoming.observe(viewLifecycleOwner) { upcomingMovies ->
                 upcomingMoviesAdapter.recyclerListDiffer.submitList(upcomingMovies.results)
                 hideShimmerEffect()
+            }
+
+            popularTvSeries.observe(viewLifecycleOwner) { popularTvSeries ->
+                popularTvSeriesAdapter.recyclerListDiffer.submitList(popularTvSeries.results)
             }
         }
     }
@@ -100,6 +107,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 movieOriginalLanguage = movie.originalLanguage,
                 moviePosterPath = movie.posterPath,
                 movieOriginalTitle = movie.originalTitle
+            )
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun setupPopularTvSeriesAdapter() {
+        binding.rvPopularTvSeries.adapter = popularTvSeriesAdapter
+
+        popularTvSeriesAdapter.setOnItemClickListener { tvSeries ->
+            val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailsFragment(
+                movieId = tvSeries.id.toString(),
+                movieName = tvSeries.name,
+                movieReleaseDate = tvSeries.firstAirDate,
+                movieOverview = tvSeries.overview,
+                movieOriginalLanguage = tvSeries.originalLanguage,
+                moviePosterPath = tvSeries.posterPath,
+                movieOriginalTitle = tvSeries.originalName
             )
             findNavController().navigate(action)
         }

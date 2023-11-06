@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/background_color"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".presentation.home.HomeFragment">
 
     <TextView
@@ -53,8 +53,8 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/_10sdp"
         android:fillViewport="true"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHome">
 
@@ -132,6 +132,30 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvUpcomingMovies" />
+
+            <TextView
+                android:id="@+id/tvPopularTvSeries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/popular_tv_series"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_18ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvUpcomingMovies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPopularTvSeries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPopularTvSeries" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
