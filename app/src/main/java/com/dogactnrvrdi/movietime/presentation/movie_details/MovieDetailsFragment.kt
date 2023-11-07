@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.presentation.details
+package com.dogactnrvrdi.movietime.presentation.movie_details
 
 import android.os.Bundle
 import android.view.View
@@ -38,6 +38,26 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
 
                 getMovieDetails(args.movieId)
 
+                binding.fabAddFavorite.setOnClickListener {
+                    insertMovie()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.movie_saved_successfully),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+                ibBack.setOnClickListener { findNavController().navigateUp() }
+            }
+        }
+
+        observeDatas()
+    }
+
+    private fun observeDatas() {
+        with(binding) {
+            with(viewModel) {
+
                 movie.observe(viewLifecycleOwner) { movie ->
                     tvMovieName.text = movie.title
                     tvMovieName.isSelected = true
@@ -49,19 +69,9 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
                     tvMovieOverview.text = "${getString(R.string.overview)}:\n${movie.overview}"
                     tvMovieOriginalTitle.text =
                         "${getString(R.string.original_title)}: ${movie.originalTitle}"
+
                     hideShimmerEffect()
                 }
-
-                binding.fabAddFavorite.setOnClickListener {
-                    insertMovie()
-                    Toast.makeText(
-                        context,
-                        getString(R.string.movie_saved_successfully),
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
-                ibBack.setOnClickListener { findNavController().navigateUp() }
             }
         }
     }

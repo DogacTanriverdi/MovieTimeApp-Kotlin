@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_tvSeriesDetailsFragment"
+            app:destination="@id/tvSeriesDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -34,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="com.dogactnrvrdi.movietime.presentation.details.MovieDetailsFragment"
+        android:name="com.dogactnrvrdi.movietime.presentation.movie_details.MovieDetailsFragment"
         android:label="fragment_movie_details"
         tools:layout="@layout/fragment_movie_details" >
         <argument
@@ -62,6 +65,38 @@
             app:nullable="true" />
         <argument
             android:name="movie_original_title"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/tvSeriesDetailsFragment"
+        android:name="com.dogactnrvrdi.movietime.presentation.tv_series_details.TvSeriesDetailsFragment"
+        android:label="TvSeriesDetailsFragment" >
+        <argument
+            android:name="tvSeriesId"
+            app:argType="string" />
+        <argument
+            android:name="tvSeriesName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="tvSeriesReleaseDate"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="tvSeriesOverview"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="tvSeriesOriginalLanguage"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="tvSeriesPosterPath"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="tvSeriesOriginalTitle"
             app:argType="string"
             app:nullable="true" />
     </fragment>

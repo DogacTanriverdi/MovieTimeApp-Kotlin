@@ -2,6 +2,7 @@ package com.dogactnrvrdi.movietime.data.repo
 
 import androidx.lifecycle.LiveData
 import com.dogactnrvrdi.movietime.data.model.Movie
+import com.dogactnrvrdi.movietime.data.model.TvSeries
 import com.dogactnrvrdi.movietime.data.source.local.IMovieDao
 import com.dogactnrvrdi.movietime.data.model.popular.PopularMovies
 import com.dogactnrvrdi.movietime.data.model.search.SearchMovies
@@ -27,13 +28,16 @@ class MovieRepositoryImpl @Inject constructor(
         api.getUpcomingMovies(language = language)
 
     override suspend fun getMovieDetails(id: String, language: String): Movie =
-        api.getMovieDetails(id, language = language)
+        api.getMovieDetails(id = id, language = language)
 
     override suspend fun searchMovies(searchQuery: String, language: String): SearchMovies =
         api.searchMovies(searchQuery, language = language)
 
     override suspend fun getPopularTvSeries(language: String): PopularTvSeries =
         api.getPopularTvSeries(language)
+
+    override suspend fun getTvSeriesDetails(id: String, language: String): TvSeries =
+        api.getTvSeriesDetails(id = id, language = language)
 
     override suspend fun insertMovie(movie: Movie) = dao.insertMovie(movie)
 

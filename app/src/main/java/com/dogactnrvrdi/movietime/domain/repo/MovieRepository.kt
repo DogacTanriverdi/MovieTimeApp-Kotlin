@@ -2,6 +2,7 @@ package com.dogactnrvrdi.movietime.domain.repo
 
 import androidx.lifecycle.LiveData
 import com.dogactnrvrdi.movietime.data.model.Movie
+import com.dogactnrvrdi.movietime.data.model.TvSeries
 import com.dogactnrvrdi.movietime.data.model.popular.PopularMovies
 import com.dogactnrvrdi.movietime.data.model.search.SearchMovies
 import com.dogactnrvrdi.movietime.data.model.toprated.TopRatedMovies
@@ -21,6 +22,8 @@ interface MovieRepository {
     suspend fun searchMovies(searchQuery: String, language: String): SearchMovies
 
     suspend fun getPopularTvSeries(language: String): PopularTvSeries
+
+    suspend fun getTvSeriesDetails(id: String, language: String) : TvSeries
 
     suspend fun insertMovie(movie: Movie)
 

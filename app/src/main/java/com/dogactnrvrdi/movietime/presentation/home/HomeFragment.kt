@@ -22,6 +22,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val upcomingMoviesAdapter by lazy { UpcomingMoviesAdapter() }
     private val popularTvSeriesAdapter by lazy { PopularTvSeriesAdapter() }
 
+    private var isMovie = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
@@ -34,27 +36,31 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         setupPopularTvSeriesAdapter()
 
-        observeDatas()
+        subscribeToObservers()
     }
 
-    private fun observeDatas() {
+    private fun subscribeToObservers() {
         with(viewModel) {
 
             topRated.observe(viewLifecycleOwner) { topRatedMovies ->
                 topRatedMoviesAdapter.recyclerListDiffer.submitList(topRatedMovies.results)
+                isMovie = true
             }
 
             popular.observe(viewLifecycleOwner) { popularMovies ->
                 popularMoviesAdapter.recyclerListDiffer.submitList(popularMovies.results)
+                isMovie = true
             }
 
             upcoming.observe(viewLifecycleOwner) { upcomingMovies ->
                 upcomingMoviesAdapter.recyclerListDiffer.submitList(upcomingMovies.results)
+                isMovie = true
                 hideShimmerEffect()
             }
 
             popularTvSeries.observe(viewLifecycleOwner) { popularTvSeries ->
                 popularTvSeriesAdapter.recyclerListDiffer.submitList(popularTvSeries.results)
+                isMovie = false
             }
         }
     }
@@ -116,14 +122,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.rvPopularTvSeries.adapter = popularTvSeriesAdapter
 
         popularTvSeriesAdapter.setOnItemClickListener { tvSeries ->
-            val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailsFragment(
-                movieId = tvSeries.id.toString(),
-                movieName = tvSeries.name,
-                movieReleaseDate = tvSeries.firstAirDate,
-                movieOverview = tvSeries.overview,
-                movieOriginalLanguage = tvSeries.originalLanguage,
-                moviePosterPath = tvSeries.posterPath,
-                movieOriginalTitle = tvSeries.originalName
+            val action = HomeFragmentDirections.actionHomeFragmentToTvSeriesDetailsFragment(
+                tvSeriesId = tvSeries.id.toString(),
+                tvSeriesName = tvSeries.name,
+                tvSeriesReleaseDate = tvSeries.firstAirDate,
+                tvSeriesOverview = tvSeries.overview,
+                tvSeriesOriginalLanguage = tvSeries.originalLanguage,
+                tvSeriesPosterPath = tvSeries.posterPath,
+                tvSeriesOriginalTitle = tvSeries.originalName
             )
             findNavController().navigate(action)
         }
