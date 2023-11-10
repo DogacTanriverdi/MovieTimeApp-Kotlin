@@ -38,12 +38,12 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
 
                 getMovieDetails(args.movieId)
 
-                binding.fabAddFavorite.setOnClickListener {
+                fabAddFavorite.setOnClickListener {
                     insertMovie()
                     Toast.makeText(
                         context,
                         getString(R.string.movie_saved_successfully),
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                     ).show()
                 }
 

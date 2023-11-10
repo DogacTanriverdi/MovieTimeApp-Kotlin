@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/background_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".presentation.favorites.FavoritesFragment">
 
     <ImageButton
@@ -14,11 +14,11 @@
         android:layout_margin="@dimen/_10sdp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/back_button"
-        app:tint="@color/btn_color"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/btn_color" />
 
     <TextView
         android:id="@+id/tvFavorites"
@@ -34,19 +34,48 @@
         app:layout_constraintStart_toEndOf="@+id/ibBack"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFavorites">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipMovies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:checked="true"
+            android:text="@string/movies"
+            app:chipIcon="@drawable/ic_movie"
+            app:chipIconTint="@color/text_color" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTvSeries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="@string/tv_series"
+            app:chipIcon="@drawable/ic_tv"
+            app:chipIconTint="@color/text_color" />
+
+    </com.google.android.material.chip.ChipGroup>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFavorites"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFavorites" />
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+        app:spanCount="2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

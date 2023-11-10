@@ -1,6 +1,7 @@
 package com.dogactnrvrdi.movietime.presentation.favorites
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,31 +18,82 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     private val viewModel: FavoritesViewModel by viewModels()
 
-    private val favoritesAdapter by lazy { FavoritesAdapter() }
+    private val favoriteMoviesAdapter by lazy { FavoriteMoviesAdapter() }
+    private val favoriteTvSeriesAdapter by lazy { FavoriteTvSeriesAdapter() }
+
+    private var isMovie = false
+    private var isTvSeries = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentFavoritesBinding.bind(view)
 
-        binding.ibBack.setOnClickListener {
-            findNavController().navigateUp()
+        setupFavoriteMoviesAdapter()
+
+        with(binding) {
+
+            ibBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
+
+            chipTvSeries.setOnCheckedChangeListener { buttonView, isChecked ->
+                when {
+
+                    isChecked -> {
+                        setupFavoriteTvSeriesAdapter()
+                        if (isTvSeries) {
+                            chipMovies.isChecked = false
+                        }
+                    }
+
+                    else -> {
+                        setupFavoriteMoviesAdapter()
+                        chipMovies.isChecked = true
+                    }
+                }
+            }
+
+            chipMovies.setOnCheckedChangeListener { buttonView, isChecked ->
+                when {
+
+                    isChecked -> {
+                        setupFavoriteMoviesAdapter()
+                        if (isMovie) {
+                            chipTvSeries.isChecked = false
+                        }
+                    }
+
+                    else -> {
+                        setupFavoriteTvSeriesAdapter()
+                        chipTvSeries.isChecked = true
+                    }
+                }
+            }
         }
 
-        setupFavoritesAdapter()
-
-        observeData()
+        subscribeToObservers()
     }
 
-    private fun observeData() {
-        viewModel.movies.observe(viewLifecycleOwner) { movie ->
-            favoritesAdapter.recyclerListDiffer.submitList(movie)
+    private fun subscribeToObservers() {
+        with(viewModel) {
+
+            movies.observe(viewLifecycleOwner) { movie ->
+                favoriteMoviesAdapter.recyclerListDiffer.submitList(movie)
+            }
+
+            tvSeries.observe(viewLifecycleOwner) { tvSeries ->
+                favoriteTvSeriesAdapter.recyclerListDiffer.submitList(tvSeries)
+            }
         }
     }
 
-    private fun setupFavoritesAdapter() {
-        binding.rvFavorites.adapter = favoritesAdapter
+    private fun setupFavoriteMoviesAdapter() {
+        binding.rvFavorites.adapter = favoriteMoviesAdapter
 
-        favoritesAdapter.setOnItemClickListener { movie ->
+        isMovie = true
+        isTvSeries = false
+
+        favoriteMoviesAdapter.setOnItemClickListener { movie ->
             val action = FavoritesFragmentDirections.actionFavoritesFragmentToMovieDetailsFragment(
                 movieId = movie.id.toString(),
                 movieName = movie.title,
@@ -50,6 +102,26 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
                 movieOriginalLanguage = movie.originalLanguage,
                 moviePosterPath = movie.posterPath,
                 movieOriginalTitle = movie.originalTitle
+            )
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun setupFavoriteTvSeriesAdapter() {
+        binding.rvFavorites.adapter = favoriteTvSeriesAdapter
+
+        isTvSeries = true
+        isMovie = false
+
+        favoriteTvSeriesAdapter.setOnItemClickListener { tvSeries ->
+            val action = FavoritesFragmentDirections.actionFavoritesFragmentToMovieDetailsFragment(
+                movieId = tvSeries.id.toString(),
+                movieName = tvSeries.name,
+                movieReleaseDate = tvSeries.firstAirDate,
+                movieOverview = tvSeries.overview,
+                movieOriginalLanguage = tvSeries.originalLanguage,
+                moviePosterPath = tvSeries.posterPath,
+                movieOriginalTitle = tvSeries.originalName
             )
             findNavController().navigate(action)
         }

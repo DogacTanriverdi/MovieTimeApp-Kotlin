@@ -20,4 +20,6 @@
     <string name="tv_series_poster">Dizinin afişi</string>
     <string name="tv_series_name">Dizinin ismi</string>
     <string name="popular_tv_series">Popüler Diziler</string>
+    <string name="movies">Filmler</string>
+    <string name="tv_series">Diziler</string>
 </resources>

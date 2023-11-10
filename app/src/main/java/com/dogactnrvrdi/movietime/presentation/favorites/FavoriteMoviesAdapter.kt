@@ -11,7 +11,7 @@ import com.dogactnrvrdi.movietime.databinding.FavoriteMoviesItemRowBinding
 import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.Movie
 
-class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHolder>() {
+class FavoriteMoviesAdapter : RecyclerView.Adapter<FavoriteMoviesAdapter.FavoritesViewHolder>() {
 
     class FavoritesViewHolder(
         private val binding: FavoriteMoviesItemRowBinding
@@ -27,7 +27,6 @@ class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHold
         }
     }
 
-    // Diff Util
     private val diffUtil = object : DiffUtil.ItemCallback<Movie>() {
 
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
@@ -64,7 +63,6 @@ class FavoritesAdapter : RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHold
         }
     }
 
-    // On Item Click Listener
     private var onItemClickListener: ((Movie) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (Movie) -> Unit) {

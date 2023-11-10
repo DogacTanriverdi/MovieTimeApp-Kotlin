@@ -67,7 +67,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getPopularTvSeries() {
         viewModelScope.launch {
-            repo.getPopularTvSeries(language = language).let { popularTvSeries ->
+            repo.getPopularTvSeries(language).let { popularTvSeries ->
                 _popularTvSeries.value = popularTvSeries
             }
         }

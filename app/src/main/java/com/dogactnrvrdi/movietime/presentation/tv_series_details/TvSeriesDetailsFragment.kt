@@ -2,6 +2,7 @@ package com.dogactnrvrdi.movietime.presentation.tv_series_details
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -36,6 +37,15 @@ class TvSeriesDetailsFragment : Fragment(R.layout.fragment_tv_series_details) {
             with(viewModel) {
 
                 getTvSeriesDetails(args.tvSeriesId)
+
+                fabAddFavorite.setOnClickListener {
+                    insertTvSeries()
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.movie_saved_successfully),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
 
             ibBack.setOnClickListener {

@@ -22,18 +22,15 @@ class MovieDetailsViewModel @Inject constructor(
 
     private val language = Locale.getDefault().language
 
-    fun getMovieDetails(id: String) {
-        viewModelScope.launch {
-            repo.getMovieDetails(id = id, language = language).let { movie ->
-                _movie.value = movie
-            }
+    fun getMovieDetails(id: String) = viewModelScope.launch {
+        repo.getMovieDetails(id = id, language = language).let { movie ->
+            _movie.value = movie
         }
     }
 
-    fun insertMovie() =
-        viewModelScope.launch {
-            movie.value?.let { movie ->
-                repo.insertMovie(movie)
-            }
+    fun insertMovie() = viewModelScope.launch {
+        movie.value?.let { movie ->
+            repo.insertMovie(movie)
         }
+    }
 }

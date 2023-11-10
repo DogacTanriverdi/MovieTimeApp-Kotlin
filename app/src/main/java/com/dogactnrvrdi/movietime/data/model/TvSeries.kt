@@ -1,8 +1,12 @@
 package com.dogactnrvrdi.movietime.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity("tv_series_details")
 data class TvSeries(
+    @PrimaryKey val id: Int,
     @SerializedName("backdrop_path") val backdropPath: String,
     @SerializedName("first_air_date") val firstAirDate: String,
     @SerializedName("last_air_date") val lastAirDate: String,
@@ -14,7 +18,6 @@ data class TvSeries(
     @SerializedName("vote_average") val voteAverage: Double,
     @SerializedName("vote_count") val voteCount: Int,
     val homepage: String,
-    val id: Int,
     val name: String,
     val overview: String,
     val popularity: Double,

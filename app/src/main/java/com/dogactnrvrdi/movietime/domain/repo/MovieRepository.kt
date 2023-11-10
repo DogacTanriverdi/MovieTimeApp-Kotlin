@@ -23,11 +23,17 @@ interface MovieRepository {
 
     suspend fun getPopularTvSeries(language: String): PopularTvSeries
 
-    suspend fun getTvSeriesDetails(id: String, language: String) : TvSeries
+    suspend fun getTvSeriesDetails(id: String, language: String): TvSeries
 
     suspend fun insertMovie(movie: Movie)
 
     suspend fun deleteMovie(movie: Movie)
 
     fun getAllMovies(): LiveData<List<Movie>>
+
+    suspend fun insertTvSeries(tvSeries: TvSeries)
+
+    suspend fun deleteTvSeries(tvSeries: TvSeries)
+
+    fun getAllTvSeries(): LiveData<List<TvSeries>>
 }

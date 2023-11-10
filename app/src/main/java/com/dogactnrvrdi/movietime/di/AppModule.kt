@@ -4,10 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.dogactnrvrdi.movietime.R
 import com.dogactnrvrdi.movietime.common.Constants.BASE_URL
-import com.dogactnrvrdi.movietime.data.source.local.IMovieDao
+import com.dogactnrvrdi.movietime.data.source.local.MovieDao
 import com.dogactnrvrdi.movietime.data.source.local.MovieDatabase
 import com.dogactnrvrdi.movietime.data.repo.MovieRepositoryImpl
 import com.dogactnrvrdi.movietime.data.source.remote.MovieApi
@@ -17,11 +16,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -63,7 +59,7 @@ object AppModule {
     @Provides
     fun provideMovieRepository(
         api: MovieApi,
-        dao: IMovieDao
+        dao: MovieDao
     ): MovieRepository = MovieRepositoryImpl(api, dao)
 
     @Singleton

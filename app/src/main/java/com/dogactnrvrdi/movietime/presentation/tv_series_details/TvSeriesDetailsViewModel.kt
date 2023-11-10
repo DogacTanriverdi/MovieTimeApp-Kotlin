@@ -21,11 +21,15 @@ class TvSeriesDetailsViewModel @Inject constructor(
 
     private val language = Locale.getDefault().language
 
-    fun getTvSeriesDetails(id: String) {
-        viewModelScope.launch {
-            repo.getTvSeriesDetails(id = id, language = language).let { tvSeries ->
-                _tvSeries.value = tvSeries
-            }
+    fun getTvSeriesDetails(id: String) = viewModelScope.launch {
+        repo.getTvSeriesDetails(id = id, language = language).let { tvSeries ->
+            _tvSeries.value = tvSeries
+        }
+    }
+
+    fun insertTvSeries() = viewModelScope.launch {
+        tvSeries.value?.let { tvSeries ->
+            repo.insertTvSeries(tvSeries)
         }
     }
 }

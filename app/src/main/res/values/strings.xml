@@ -20,4 +20,6 @@
     <string name="tv_series_poster">Tv series poster</string>
     <string name="tv_series_name">Tv series name</string>
     <string name="popular_tv_series">Popular TV Series</string>
+    <string name="movies">Movies</string>
+    <string name="tv_series">TV Series</string>
 </resources>
