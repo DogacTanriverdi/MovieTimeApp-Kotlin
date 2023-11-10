@@ -1,7 +1,6 @@
 package com.dogactnrvrdi.movietime.presentation.favorites
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -114,15 +113,16 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         isMovie = false
 
         favoriteTvSeriesAdapter.setOnItemClickListener { tvSeries ->
-            val action = FavoritesFragmentDirections.actionFavoritesFragmentToMovieDetailsFragment(
-                movieId = tvSeries.id.toString(),
-                movieName = tvSeries.name,
-                movieReleaseDate = tvSeries.firstAirDate,
-                movieOverview = tvSeries.overview,
-                movieOriginalLanguage = tvSeries.originalLanguage,
-                moviePosterPath = tvSeries.posterPath,
-                movieOriginalTitle = tvSeries.originalName
-            )
+            val action =
+                FavoritesFragmentDirections.actionFavoritesFragmentToTvSeriesDetailsFragment(
+                    tvSeriesId = tvSeries.id.toString(),
+                    tvSeriesName = tvSeries.name,
+                    tvSeriesReleaseDate = tvSeries.firstAirDate,
+                    tvSeriesOverview = tvSeries.overview,
+                    tvSeriesOriginalLanguage = tvSeries.originalLanguage,
+                    tvSeriesPosterPath = tvSeries.posterPath,
+                    tvSeriesOriginalTitle = tvSeries.originalName
+                )
             findNavController().navigate(action)
         }
     }

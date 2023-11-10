@@ -8,6 +8,7 @@ import com.dogactnrvrdi.movietime.data.model.Movie
 import com.dogactnrvrdi.movietime.data.model.TvSeries
 import com.dogactnrvrdi.movietime.data.model.search.SearchMovies
 import com.dogactnrvrdi.movietime.data.model.tv_popular.PopularTvSeries
+import com.dogactnrvrdi.movietime.data.model.tv_search.SearchTvSeries
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -56,5 +57,12 @@ interface MovieApi {
         @Path("id") id: String,
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ) : TvSeries
+    ): TvSeries
+
+    @GET("search/tv")
+    suspend fun searchTvSeries(
+        @Query("query") searchQuery: String,
+        @Query("language") language: String = "en",
+        @Query("api_key") apiKey: String = API_KEY
+    ): SearchTvSeries
 }

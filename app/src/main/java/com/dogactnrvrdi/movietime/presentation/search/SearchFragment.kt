@@ -18,7 +18,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private val viewModel: SearchViewModel by viewModels()
 
-    private val searchAdapter by lazy { SearchAdapter() }
+    private val searchMovieAdapter by lazy { SearchMovieAdapter() }
+    private val searchTvSeriesAdapter by lazy { SearchTvSeriesAdapter() }
+
+    private var isMovie = false
+    private var isTvSeries = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,8 +33,48 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             etSearch.addTextChangedListener { searchQuery ->
                 val query = searchQuery.toString()
                 if (query.isNotEmpty()) {
+
+                    setupSearchMovieAdapter()
                     viewModel.searchMovies(query)
-                    showShimmerEffect()
+
+                    chipTvSeries.setOnCheckedChangeListener { buttonView, isChecked ->
+                        when {
+
+                            isChecked -> {
+                                setupSearchTvSeriesAdapter()
+                                viewModel.searchTvSeries(query)
+                                if (isTvSeries) {
+                                    chipMovies.isChecked = false
+                                }
+                            }
+
+                            else -> {
+                                setupSearchMovieAdapter()
+                                viewModel.searchMovies(query)
+                                chipMovies.isChecked = true
+                            }
+                        }
+                    }
+
+                    chipMovies.setOnCheckedChangeListener { buttonView, isChecked ->
+                        when {
+
+                            isChecked -> {
+                                setupSearchMovieAdapter()
+                                viewModel.searchMovies(query)
+                                if (isMovie) {
+                                    chipTvSeries.isChecked = false
+                                }
+                            }
+
+                            else -> {
+                                setupSearchTvSeriesAdapter()
+                                viewModel.searchTvSeries(query)
+                                chipTvSeries.isChecked = true
+                            }
+                        }
+                    }
+
                 } else {
                     hideShimmerEffect()
                 }
@@ -41,22 +85,31 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             }
         }
 
-        setupSearchAdapter()
-
-        observeData()
+        subscribeToObservers()
     }
 
-    private fun observeData() {
-        viewModel.searchMovie.observe(viewLifecycleOwner) { searchMovies ->
-            searchAdapter.recyclerListDiffer.submitList(searchMovies.results)
-            hideShimmerEffect()
+    private fun subscribeToObservers() {
+        with(viewModel) {
+
+            searchMovie.observe(viewLifecycleOwner) { searchMovies ->
+                searchMovieAdapter.recyclerListDiffer.submitList(searchMovies.results)
+                hideShimmerEffect()
+            }
+
+            searchTvSeries.observe(viewLifecycleOwner) { searchTvSeries ->
+                searchTvSeriesAdapter.recyclerListDiffer.submitList(searchTvSeries.results)
+                hideShimmerEffect()
+            }
         }
     }
 
-    private fun setupSearchAdapter() {
-        binding.rvSearchMovie.adapter = searchAdapter
+    private fun setupSearchMovieAdapter() {
+        binding.rvSearchMovie.adapter = searchMovieAdapter
 
-        searchAdapter.setOnItemClickListener { movie ->
+        isMovie = true
+        isTvSeries = false
+
+        searchMovieAdapter.setOnItemClickListener { movie ->
             val action = SearchFragmentDirections.actionSearchFragmentToMovieDetailsFragment(
                 movieId = movie.id.toString(),
                 movieName = movie.title,
@@ -65,6 +118,26 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                 movieOriginalLanguage = movie.originalLanguage,
                 moviePosterPath = movie.posterPath,
                 movieOriginalTitle = movie.originalTitle
+            )
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun setupSearchTvSeriesAdapter() {
+        binding.rvSearchMovie.adapter = searchTvSeriesAdapter
+
+        isMovie = false
+        isTvSeries = true
+
+        searchTvSeriesAdapter.setOnItemClickListener { tvSeries ->
+            val action = SearchFragmentDirections.actionSearchFragmentToTvSeriesDetailsFragment(
+                tvSeriesId = tvSeries.id.toString(),
+                tvSeriesName = tvSeries.name,
+                tvSeriesReleaseDate = tvSeries.firstAirDate,
+                tvSeriesOverview = tvSeries.overview,
+                tvSeriesOriginalLanguage = tvSeries.originalLanguage,
+                tvSeriesPosterPath = tvSeries.posterPath,
+                tvSeriesOriginalTitle = tvSeries.originalName
             )
             findNavController().navigate(action)
         }

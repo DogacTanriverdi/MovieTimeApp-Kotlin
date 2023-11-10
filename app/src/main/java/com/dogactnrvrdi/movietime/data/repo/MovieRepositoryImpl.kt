@@ -8,6 +8,7 @@ import com.dogactnrvrdi.movietime.data.model.popular.PopularMovies
 import com.dogactnrvrdi.movietime.data.model.search.SearchMovies
 import com.dogactnrvrdi.movietime.data.model.toprated.TopRatedMovies
 import com.dogactnrvrdi.movietime.data.model.tv_popular.PopularTvSeries
+import com.dogactnrvrdi.movietime.data.model.tv_search.SearchTvSeries
 import com.dogactnrvrdi.movietime.data.model.upcoming.UpcomingMovies
 import com.dogactnrvrdi.movietime.data.source.remote.MovieApi
 import com.dogactnrvrdi.movietime.domain.repo.MovieRepository
@@ -38,6 +39,9 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getTvSeriesDetails(id: String, language: String): TvSeries =
         api.getTvSeriesDetails(id = id, language = language)
+
+    override suspend fun searchTvSeries(searchQuery: String, language: String): SearchTvSeries =
+        api.searchTvSeries(searchQuery, language)
 
     override suspend fun insertMovie(movie: Movie) = dao.insertMovie(movie)
 

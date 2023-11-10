@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_searchFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_tvSeriesDetailsFragment"
+            app:destination="@id/tvSeriesDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -34,6 +37,9 @@
         <action
             android:id="@+id/action_favoritesFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_tvSeriesDetailsFragment"
+            app:destination="@id/tvSeriesDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"

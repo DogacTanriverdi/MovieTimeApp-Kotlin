@@ -11,7 +11,7 @@ import com.dogactnrvrdi.movietime.databinding.SearchMoviesItemRowBinding
 import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.Movie
 
-class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
+class SearchMovieAdapter : RecyclerView.Adapter<SearchMovieAdapter.SearchViewHolder>() {
 
     class SearchViewHolder(
         private val binding: SearchMoviesItemRowBinding
@@ -27,7 +27,6 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
         }
     }
 
-    // Diff Util
     private val diffUtil = object : DiffUtil.ItemCallback<Movie>() {
 
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
@@ -64,7 +63,6 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
         }
     }
 
-    // On Item Click Listener
     private var onItemClickListener: ((Movie) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (Movie) -> Unit) {
