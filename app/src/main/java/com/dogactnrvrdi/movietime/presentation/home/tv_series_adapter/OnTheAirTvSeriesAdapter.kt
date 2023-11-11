@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.presentation.home
+package com.dogactnrvrdi.movietime.presentation.home.tv_series_adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,18 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.TvSeries
-import com.dogactnrvrdi.movietime.databinding.PopularTvSeriesItemRowBinding
+import com.dogactnrvrdi.movietime.databinding.DefaultItemRowBinding
 
-class PopularTvSeriesAdapter :
-    RecyclerView.Adapter<PopularTvSeriesAdapter.PopularTvSeriesViewHolder>() {
+class OnTheAirTvSeriesAdapter :
+    RecyclerView.Adapter<OnTheAirTvSeriesAdapter.PopularTvSeriesViewHolder>() {
 
     class PopularTvSeriesViewHolder(
-        private val binding: PopularTvSeriesItemRowBinding
+        private val binding: DefaultItemRowBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(tvSeries: TvSeries, context: Context) {
             with(binding) {
-                tvTvSeriesName.text = tvSeries.name
+                tvName.text = tvSeries.name
                 Glide.with(context).load(BASE_IMAGE_URL + tvSeries.posterPath).into(ivPoster)
             }
         }
@@ -44,7 +44,7 @@ class PopularTvSeriesAdapter :
         set(value) = recyclerListDiffer.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularTvSeriesViewHolder {
-        val binding = PopularTvSeriesItemRowBinding.inflate(
+        val binding = DefaultItemRowBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         return PopularTvSeriesViewHolder(binding)

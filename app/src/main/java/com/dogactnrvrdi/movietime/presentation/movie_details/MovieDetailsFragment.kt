@@ -59,8 +59,8 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
             with(viewModel) {
 
                 movie.observe(viewLifecycleOwner) { movie ->
-                    tvMovieName.text = movie.title
-                    tvMovieName.isSelected = true
+                    tvName.text = movie.title
+                    tvName.isSelected = true
                     glide.load(BASE_IMAGE_URL + movie.posterPath).into(ivMoviePoster)
                     tvMovieOriginalLanguage.text =
                         "${getString(R.string.original_language)}: ${movie.originalLanguage}"

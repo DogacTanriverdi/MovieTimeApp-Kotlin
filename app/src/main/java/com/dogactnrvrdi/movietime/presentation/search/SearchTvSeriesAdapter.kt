@@ -9,18 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.TvSeries
-import com.dogactnrvrdi.movietime.databinding.SearchTvSeriesItemRowBinding
+import com.dogactnrvrdi.movietime.databinding.DefaultItemRowBinding
 
 class SearchTvSeriesAdapter :
     RecyclerView.Adapter<SearchTvSeriesAdapter.SearchTvSeriesViewHolder>() {
 
     class SearchTvSeriesViewHolder(
-        private val binding: SearchTvSeriesItemRowBinding
+        private val binding: DefaultItemRowBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(tvSeries: TvSeries, context: Context) {
             with(binding) {
-                tvTvSeriesName.text = tvSeries.name
+                tvName.text = tvSeries.name
                 Glide.with(context).load(BASE_IMAGE_URL + tvSeries.posterPath).into(ivPoster)
             }
         }
@@ -44,7 +44,7 @@ class SearchTvSeriesAdapter :
         set(value) = recyclerListDiffer.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchTvSeriesViewHolder {
-        val binding = SearchTvSeriesItemRowBinding.inflate(
+        val binding = DefaultItemRowBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         return SearchTvSeriesViewHolder(binding)

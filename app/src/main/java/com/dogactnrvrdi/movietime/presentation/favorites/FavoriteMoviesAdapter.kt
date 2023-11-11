@@ -7,19 +7,19 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dogactnrvrdi.movietime.databinding.FavoriteMoviesItemRowBinding
 import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.Movie
+import com.dogactnrvrdi.movietime.databinding.DefaultItemRowBinding
 
 class FavoriteMoviesAdapter : RecyclerView.Adapter<FavoriteMoviesAdapter.FavoritesViewHolder>() {
 
     class FavoritesViewHolder(
-        private val binding: FavoriteMoviesItemRowBinding
+        private val binding: DefaultItemRowBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(movie: Movie, context: Context) {
             binding.apply {
-                tvMovieName.text = movie.title
+                tvName.text = movie.title
                 Glide.with(context)
                     .load(BASE_IMAGE_URL + movie.posterPath)
                     .into(ivPoster)
@@ -45,7 +45,7 @@ class FavoriteMoviesAdapter : RecyclerView.Adapter<FavoriteMoviesAdapter.Favorit
         set(value) = recyclerListDiffer.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
-        val binding = FavoriteMoviesItemRowBinding.inflate(
+        val binding = DefaultItemRowBinding.inflate(
             LayoutInflater.from(parent.context),parent, false
         )
         return FavoritesViewHolder(binding)

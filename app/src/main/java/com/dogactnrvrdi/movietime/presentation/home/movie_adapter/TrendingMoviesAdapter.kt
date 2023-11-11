@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.presentation.home
+package com.dogactnrvrdi.movietime.presentation.home.movie_adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,20 +7,22 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dogactnrvrdi.movietime.databinding.TopRatedMoviesItemRowBinding
 import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.Movie
+import com.dogactnrvrdi.movietime.databinding.DefaultItemRowBinding
 
-class TopRatedMoviesAdapter :
-    RecyclerView.Adapter<TopRatedMoviesAdapter.TopRatedMoviesViewHolder>() {
+class TrendingMoviesAdapter : RecyclerView.Adapter<TrendingMoviesAdapter.PopularMoviesViewHolder>() {
 
-    class TopRatedMoviesViewHolder(private val binding: TopRatedMoviesItemRowBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class PopularMoviesViewHolder(
+        private val binding: DefaultItemRowBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(topRatedMovies: Movie, context: Context) {
+        fun bind(movies: Movie, context: Context) {
             binding.apply {
-                tvMovieName.text = topRatedMovies.title
-                Glide.with(context).load(BASE_IMAGE_URL + topRatedMovies.posterPath).into(ivPoster)
+                tvName.text = movies.title
+                Glide.with(context)
+                    .load(BASE_IMAGE_URL + movies.posterPath)
+                    .into(ivPoster)
             }
         }
     }
@@ -42,16 +44,16 @@ class TopRatedMoviesAdapter :
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopRatedMoviesViewHolder {
-        val binding = TopRatedMoviesItemRowBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMoviesViewHolder {
+        val binding = DefaultItemRowBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return TopRatedMoviesViewHolder(binding)
+        return PopularMoviesViewHolder(binding)
     }
 
     override fun getItemCount(): Int = movies.size
 
-    override fun onBindViewHolder(holder: TopRatedMoviesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PopularMoviesViewHolder, position: Int) {
         val movie = movies[position]
         holder.bind(movie, holder.itemView.context)
         holder.itemView.setOnClickListener {

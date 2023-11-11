@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.presentation.favorites
+package com.dogactnrvrdi.movietime.presentation.home.tv_series_adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,10 +11,10 @@ import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.TvSeries
 import com.dogactnrvrdi.movietime.databinding.DefaultItemRowBinding
 
-class FavoriteTvSeriesAdapter :
-    RecyclerView.Adapter<FavoriteTvSeriesAdapter.FavoriteTvSeriesViewHolder>() {
+class PopularTvSeriesAdapter :
+    RecyclerView.Adapter<PopularTvSeriesAdapter.PopularTvSeriesViewHolder>() {
 
-    class FavoriteTvSeriesViewHolder(
+    class PopularTvSeriesViewHolder(
         private val binding: DefaultItemRowBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -43,16 +43,16 @@ class FavoriteTvSeriesAdapter :
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteTvSeriesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularTvSeriesViewHolder {
         val binding = DefaultItemRowBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return FavoriteTvSeriesViewHolder(binding)
+        return PopularTvSeriesViewHolder(binding)
     }
 
     override fun getItemCount(): Int = tvSeries.size
 
-    override fun onBindViewHolder(holder: FavoriteTvSeriesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PopularTvSeriesViewHolder, position: Int) {
         val series = tvSeries[position]
         with(holder) {
             bind(series, itemView.context)

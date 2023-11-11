@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.presentation.home
+package com.dogactnrvrdi.movietime.presentation.home.movie_adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,21 +7,21 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dogactnrvrdi.movietime.databinding.PopularMoviesItemRowBinding
 import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.Movie
+import com.dogactnrvrdi.movietime.databinding.DefaultItemRowBinding
 
 class PopularMoviesAdapter : RecyclerView.Adapter<PopularMoviesAdapter.PopularMoviesViewHolder>() {
 
     class PopularMoviesViewHolder(
-        private val binding: PopularMoviesItemRowBinding
+        private val binding: DefaultItemRowBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(popularMovies: Movie, context: Context) {
+        fun bind(movies: Movie, context: Context) {
             binding.apply {
-                tvMovieName.text = popularMovies.title
+                tvName.text = movies.title
                 Glide.with(context)
-                    .load(BASE_IMAGE_URL + popularMovies.posterPath)
+                    .load(BASE_IMAGE_URL + movies.posterPath)
                     .into(ivPoster)
             }
         }
@@ -45,7 +45,7 @@ class PopularMoviesAdapter : RecyclerView.Adapter<PopularMoviesAdapter.PopularMo
         set(value) = recyclerListDiffer.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMoviesViewHolder {
-        val binding = PopularMoviesItemRowBinding.inflate(
+        val binding = DefaultItemRowBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         return PopularMoviesViewHolder(binding)
@@ -63,7 +63,6 @@ class PopularMoviesAdapter : RecyclerView.Adapter<PopularMoviesAdapter.PopularMo
         }
     }
 
-    // On Item Click Listener
     private var onItemClickListener: ((Movie) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (Movie) -> Unit) {

@@ -22,4 +22,10 @@
     <string name="popular_tv_series">Popular TV Series</string>
     <string name="movies">Movies</string>
     <string name="tv_series">TV Series</string>
+    <string name="name">Name</string>
+    <string name="trending_movies">Trending Movies</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="trending_tv_series">Trending TV Series</string>
+    <string name="airing_today_tv_series">Airing Today TV Series</string>
+    <string name="on_the_air_tv_series">On The Air TV Series</string>
 </resources>

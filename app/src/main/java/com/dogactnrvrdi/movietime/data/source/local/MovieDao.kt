@@ -13,6 +13,7 @@ import com.dogactnrvrdi.movietime.data.model.TvSeries
 interface MovieDao {
 
     /* Movies */
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovie(movie: Movie)
 
@@ -23,6 +24,7 @@ interface MovieDao {
     fun getAllMovies(): LiveData<List<Movie>>
 
     /* TV Series */
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTvSeries(tvSeries: TvSeries)
 

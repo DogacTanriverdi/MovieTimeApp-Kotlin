@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dogactnrvrdi.movietime.databinding.UpcomingMoviesItemRowBinding
 import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.Movie
+import com.dogactnrvrdi.movietime.databinding.UpcomingMoviesItemRowBinding
 
 class UpcomingMoviesAdapter :
     RecyclerView.Adapter<UpcomingMoviesAdapter.UpcomingMoviesViewHolder>() {
@@ -18,18 +18,17 @@ class UpcomingMoviesAdapter :
         private val binding: UpcomingMoviesItemRowBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(upcomingMovies: Movie, context: Context) {
+        fun bind(movies: Movie, context: Context) {
             binding.apply {
-                tvMovieName.text = upcomingMovies.title
-                tvMovieReleaseDate.text = upcomingMovies.releaseDate
+                tvName.text = movies.title
+                tvMovieReleaseDate.text = movies.releaseDate
                 Glide.with(context)
-                    .load(BASE_IMAGE_URL + upcomingMovies.posterPath)
+                    .load(BASE_IMAGE_URL + movies.posterPath)
                     .into(ivPoster)
             }
         }
     }
 
-    // Diff Util
     private val diffUtil = object : DiffUtil.ItemCallback<Movie>() {
 
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
@@ -66,7 +65,6 @@ class UpcomingMoviesAdapter :
         }
     }
 
-    // On Item Click Listener
     private var onItemClickListener: ((Movie) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (Movie) -> Unit) {

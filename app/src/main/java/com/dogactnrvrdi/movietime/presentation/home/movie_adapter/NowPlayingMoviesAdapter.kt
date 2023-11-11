@@ -1,4 +1,4 @@
-package com.dogactnrvrdi.movietime.presentation.search
+package com.dogactnrvrdi.movietime.presentation.home.movie_adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,17 +11,17 @@ import com.dogactnrvrdi.movietime.common.Constants.BASE_IMAGE_URL
 import com.dogactnrvrdi.movietime.data.model.Movie
 import com.dogactnrvrdi.movietime.databinding.DefaultItemRowBinding
 
-class SearchMovieAdapter : RecyclerView.Adapter<SearchMovieAdapter.SearchViewHolder>() {
+class NowPlayingMoviesAdapter : RecyclerView.Adapter<NowPlayingMoviesAdapter.PopularMoviesViewHolder>() {
 
-    class SearchViewHolder(
+    class PopularMoviesViewHolder(
         private val binding: DefaultItemRowBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(movie: Movie, context: Context) {
+        fun bind(movies: Movie, context: Context) {
             binding.apply {
-                tvName.text = movie.title
+                tvName.text = movies.title
                 Glide.with(context)
-                    .load(BASE_IMAGE_URL + movie.posterPath)
+                    .load(BASE_IMAGE_URL + movies.posterPath)
                     .into(ivPoster)
             }
         }
@@ -44,16 +44,16 @@ class SearchMovieAdapter : RecyclerView.Adapter<SearchMovieAdapter.SearchViewHol
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMoviesViewHolder {
         val binding = DefaultItemRowBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return SearchViewHolder(binding)
+        return PopularMoviesViewHolder(binding)
     }
 
     override fun getItemCount(): Int = movies.size
 
-    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PopularMoviesViewHolder, position: Int) {
         val movie = movies[position]
         holder.bind(movie, holder.itemView.context)
         holder.itemView.setOnClickListener {

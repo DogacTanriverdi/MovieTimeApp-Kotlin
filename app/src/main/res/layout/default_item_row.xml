@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/_100sdp"
     android:layout_height="@dimen/_170sdp"
-    android:layout_margin="@dimen/_10sdp"
+    android:layout_margin="@dimen/_5sdp"
     android:orientation="vertical">
 
     <ImageView
@@ -10,20 +10,21 @@
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_150sdp"
         android:layout_gravity="center"
+        android:scaleType="centerCrop"
         android:background="@drawable/bg_search_box"
-        android:contentDescription="@string/movie_poster"
-        android:scaleType="centerCrop" />
+        android:contentDescription="@string/movie_poster" />
 
     <TextView
-        android:id="@+id/tvTvSeriesName"
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:ellipsize="end"
-        android:fontFamily="@font/roboto_medium"
-        android:maxLines="1"
-        android:text="@string/tv_series_name"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_15ssp" />
+        android:maxLines="1"
+        android:textSize="@dimen/_15ssp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/name"
+        android:layout_gravity="center"
+        />
 
 </LinearLayout>
