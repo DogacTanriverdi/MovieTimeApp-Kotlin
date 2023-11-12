@@ -53,7 +53,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     // Navigation
-    val nav_version = "2.7.3"
+    val nav_version = "2.7.5"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
@@ -83,18 +83,18 @@ dependencies {
     implementation("com.intuit.ssp:ssp-android:$sdp_version")
 
     // Coroutines
-    val coroutines_version = "1.6.4"
+    val coroutines_version = "1.7.3"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
 
     // Room
-    val room_version = "2.5.2"
+    val room_version = "2.6.0"
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
 
     // Shimmer Effect
-    implementation ("com.facebook.shimmer:shimmer:0.5.0")
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 
     // Chucker
     implementation("com.github.chuckerteam.chucker:library:4.0.0")

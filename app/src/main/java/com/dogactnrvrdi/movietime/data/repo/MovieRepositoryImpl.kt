@@ -4,16 +4,8 @@ import androidx.lifecycle.LiveData
 import com.dogactnrvrdi.movietime.data.model.Movie
 import com.dogactnrvrdi.movietime.data.model.TvSeries
 import com.dogactnrvrdi.movietime.data.source.local.MovieDao
-import com.dogactnrvrdi.movietime.data.model.popular.PopularMovies
-import com.dogactnrvrdi.movietime.data.model.search.SearchMovies
-import com.dogactnrvrdi.movietime.data.model.now_playing.NowPlayingMovies
-import com.dogactnrvrdi.movietime.data.model.trending.TrendingMoviesDay
-import com.dogactnrvrdi.movietime.data.model.tv_airing_today.AiringTodayTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_on_air.OnTheAirTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_popular.PopularTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_search.SearchTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_trending.TrendingTvSeriesDay
-import com.dogactnrvrdi.movietime.data.model.upcoming.UpcomingMovies
+import com.dogactnrvrdi.movietime.data.model.TvSeriesList
+import com.dogactnrvrdi.movietime.data.model.MovieList
 import com.dogactnrvrdi.movietime.data.source.remote.MovieApi
 import com.dogactnrvrdi.movietime.domain.repo.MovieRepository
 import javax.inject.Inject
@@ -25,22 +17,22 @@ class MovieRepositoryImpl @Inject constructor(
 
     /* MOVIES */
 
-    override suspend fun getTrendingMoviesDay(language: String): TrendingMoviesDay =
+    override suspend fun getTrendingMoviesDay(language: String): MovieList =
         api.getTrendingMoviesDay(language)
 
-    override suspend fun getNowPlayingMovies(language: String): NowPlayingMovies =
+    override suspend fun getNowPlayingMovies(language: String): MovieList =
         api.getNowPlayingMovies(language)
 
-    override suspend fun getPopularMovies(language: String): PopularMovies =
+    override suspend fun getPopularMovies(language: String): MovieList =
         api.getPopularMovies(language)
 
-    override suspend fun getUpcomingMovies(language: String): UpcomingMovies =
+    override suspend fun getUpcomingMovies(language: String): MovieList =
         api.getUpcomingMovies(language)
 
     override suspend fun getMovieDetails(id: String, language: String): Movie =
         api.getMovieDetails(id, language)
 
-    override suspend fun searchMovies(searchQuery: String, language: String): SearchMovies =
+    override suspend fun searchMovies(searchQuery: String, language: String): MovieList =
         api.searchMovies(searchQuery, language)
 
     override suspend fun insertMovie(movie: Movie) = dao.insertMovie(movie)
@@ -51,22 +43,22 @@ class MovieRepositoryImpl @Inject constructor(
 
     /* TV SERIES */
 
-    override suspend fun getTrendingTvSeriesDay(language: String): TrendingTvSeriesDay =
+    override suspend fun getTrendingTvSeriesDay(language: String): TvSeriesList =
         api.getTrendingTvSeriesDay(language)
 
-    override suspend fun getAiringTodayTvSeries(language: String): AiringTodayTvSeries =
+    override suspend fun getAiringTodayTvSeries(language: String): TvSeriesList =
         api.getAiringTodayTvSeries(language)
 
-    override suspend fun getOnTheAirTvSeries(language: String): OnTheAirTvSeries =
+    override suspend fun getOnTheAirTvSeries(language: String): TvSeriesList =
         api.getOnTheAirTvSeries(language)
 
-    override suspend fun getPopularTvSeries(language: String): PopularTvSeries =
+    override suspend fun getPopularTvSeries(language: String): TvSeriesList =
         api.getPopularTvSeries(language)
 
     override suspend fun getTvSeriesDetails(id: String, language: String): TvSeries =
         api.getTvSeriesDetails(id, language)
 
-    override suspend fun searchTvSeries(searchQuery: String, language: String): SearchTvSeries =
+    override suspend fun searchTvSeries(searchQuery: String, language: String): TvSeriesList =
         api.searchTvSeries(searchQuery, language)
 
     override suspend fun insertTvSeries(tvSeries: TvSeries) = dao.insertTvSeries(tvSeries)

@@ -4,14 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dogactnrvrdi.movietime.data.model.popular.PopularMovies
-import com.dogactnrvrdi.movietime.data.model.now_playing.NowPlayingMovies
-import com.dogactnrvrdi.movietime.data.model.trending.TrendingMoviesDay
-import com.dogactnrvrdi.movietime.data.model.tv_airing_today.AiringTodayTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_on_air.OnTheAirTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_popular.PopularTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_trending.TrendingTvSeriesDay
-import com.dogactnrvrdi.movietime.data.model.upcoming.UpcomingMovies
+import com.dogactnrvrdi.movietime.data.model.TvSeriesList
+import com.dogactnrvrdi.movietime.data.model.MovieList
 import com.dogactnrvrdi.movietime.domain.repo.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -27,31 +21,31 @@ class HomeViewModel @Inject constructor(
 
     /* MOVIES */
 
-    private val _trendingMoviesDay = MutableLiveData<TrendingMoviesDay>()
-    val trendingMoviesDay: LiveData<TrendingMoviesDay> get() = _trendingMoviesDay
+    private val _trendingMoviesDay = MutableLiveData<MovieList>()
+    val trendingMoviesDay: LiveData<MovieList> get() = _trendingMoviesDay
 
-    private val _nowPlayingMovies = MutableLiveData<NowPlayingMovies>()
-    val nowPlayingMovies: LiveData<NowPlayingMovies> get() = _nowPlayingMovies
+    private val _movieList = MutableLiveData<MovieList>()
+    val movieList: LiveData<MovieList> get() = _movieList
 
-    private val _popularMovies = MutableLiveData<PopularMovies>()
-    val popularMovies: LiveData<PopularMovies> get() = _popularMovies
+    private val _popularMovies = MutableLiveData<MovieList>()
+    val popularMovies: LiveData<MovieList> get() = _popularMovies
 
-    private val _upcomingMovies = MutableLiveData<UpcomingMovies>()
-    val upcomingMovies: LiveData<UpcomingMovies> get() = _upcomingMovies
+    private val _upcomingMovies = MutableLiveData<MovieList>()
+    val upcomingMovies: LiveData<MovieList> get() = _upcomingMovies
 
     /* TV SERIES */
 
-    private val _trendingTvSeriesDay = MutableLiveData<TrendingTvSeriesDay>()
-    val trendingTvSeriesDay: LiveData<TrendingTvSeriesDay> get() = _trendingTvSeriesDay
+    private val _trendingTvSeriesDay = MutableLiveData<TvSeriesList>()
+    val trendingTvSeriesDay: LiveData<TvSeriesList> get() = _trendingTvSeriesDay
 
-    private val _airingTodayTvSeries = MutableLiveData<AiringTodayTvSeries>()
-    val airingTodayTvSeries: LiveData<AiringTodayTvSeries> get() = _airingTodayTvSeries
+    private val _tvSeriesList = MutableLiveData<TvSeriesList>()
+    val tvSeriesList: LiveData<TvSeriesList> get() = _tvSeriesList
 
-    private val _onTheAirTvSeries = MutableLiveData<OnTheAirTvSeries>()
-    val onTheAirTvSeries: LiveData<OnTheAirTvSeries> get() = _onTheAirTvSeries
+    private val _onTheAirTvSeries = MutableLiveData<TvSeriesList>()
+    val onTheAirTvSeries: LiveData<TvSeriesList> get() = _onTheAirTvSeries
 
-    private val _popularTvSeries = MutableLiveData<PopularTvSeries>()
-    val popularTvSeries: LiveData<PopularTvSeries> get() = _popularTvSeries
+    private val _popularTvSeries = MutableLiveData<TvSeriesList>()
+    val popularTvSeries: LiveData<TvSeriesList> get() = _popularTvSeries
 
     init {
         getTrendingMoviesDay()
@@ -75,7 +69,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getNowPlayingMovies() = viewModelScope.launch {
         repo.getNowPlayingMovies(language).let { nowPlayingMovies ->
-            _nowPlayingMovies.value = nowPlayingMovies
+            _movieList.value = nowPlayingMovies
         }
     }
 
@@ -101,7 +95,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getAiringTodayTvSeries() = viewModelScope.launch {
         repo.getAiringTodayTvSeries(language).let { airingTodayTvSeries ->
-            _airingTodayTvSeries.value = airingTodayTvSeries
+            _tvSeriesList.value = airingTodayTvSeries
         }
     }
 

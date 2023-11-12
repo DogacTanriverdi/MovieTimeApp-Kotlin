@@ -96,7 +96,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                 hideShimmerEffect()
             }
 
-            searchTvSeries.observe(viewLifecycleOwner) { searchTvSeries ->
+            tvSeriesList.observe(viewLifecycleOwner) { searchTvSeries ->
                 searchTvSeriesAdapter.recyclerListDiffer.submitList(searchTvSeries.results)
                 hideShimmerEffect()
             }

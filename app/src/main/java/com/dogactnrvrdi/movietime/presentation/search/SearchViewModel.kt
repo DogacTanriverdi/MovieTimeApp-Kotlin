@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dogactnrvrdi.movietime.data.model.search.SearchMovies
-import com.dogactnrvrdi.movietime.data.model.tv_search.SearchTvSeries
+import com.dogactnrvrdi.movietime.data.model.MovieList
+import com.dogactnrvrdi.movietime.data.model.TvSeriesList
 import com.dogactnrvrdi.movietime.domain.repo.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -19,11 +19,11 @@ class SearchViewModel @Inject constructor(
 ) : ViewModel() {
 
     // Search Movie
-    private val _searchMovie = MutableLiveData<SearchMovies>()
-    val searchMovie: LiveData<SearchMovies> get() = _searchMovie
+    private val _searchMovie = MutableLiveData<MovieList>()
+    val searchMovie: LiveData<MovieList> get() = _searchMovie
 
-    private val _searchTvSeries = MutableLiveData<SearchTvSeries>()
-    val searchTvSeries: LiveData<SearchTvSeries> get() = _searchTvSeries
+    private val _tvSeriesList = MutableLiveData<TvSeriesList>()
+    val tvSeriesList: LiveData<TvSeriesList> get() = _tvSeriesList
 
     private val language = Locale.getDefault().language
 
@@ -37,7 +37,7 @@ class SearchViewModel @Inject constructor(
     fun searchTvSeries(searchQuery: String) = viewModelScope.launch {
         delay(500)
         repo.searchTvSeries(searchQuery, language).let { tvSeries ->
-            _searchTvSeries.value = tvSeries
+            _tvSeriesList.value = tvSeries
         }
     }
 }

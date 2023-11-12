@@ -15,16 +15,8 @@ import com.dogactnrvrdi.movietime.common.Constants.TV_POPULAR
 import com.dogactnrvrdi.movietime.common.Constants.TV_SERIES_DETAILS
 import com.dogactnrvrdi.movietime.data.model.Movie
 import com.dogactnrvrdi.movietime.data.model.TvSeries
-import com.dogactnrvrdi.movietime.data.model.now_playing.NowPlayingMovies
-import com.dogactnrvrdi.movietime.data.model.popular.PopularMovies
-import com.dogactnrvrdi.movietime.data.model.search.SearchMovies
-import com.dogactnrvrdi.movietime.data.model.trending.TrendingMoviesDay
-import com.dogactnrvrdi.movietime.data.model.tv_airing_today.AiringTodayTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_on_air.OnTheAirTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_popular.PopularTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_search.SearchTvSeries
-import com.dogactnrvrdi.movietime.data.model.tv_trending.TrendingTvSeriesDay
-import com.dogactnrvrdi.movietime.data.model.upcoming.UpcomingMovies
+import com.dogactnrvrdi.movietime.data.model.TvSeriesList
+import com.dogactnrvrdi.movietime.data.model.MovieList
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -37,25 +29,25 @@ interface MovieApi {
     suspend fun getTrendingMoviesDay(
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ): TrendingMoviesDay
+    ): MovieList
 
     @GET(MOVIE_NOW_PLAYING)
     suspend fun getNowPlayingMovies(
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ): NowPlayingMovies
+    ): MovieList
 
     @GET(MOVIE_POPULAR)
     suspend fun getPopularMovies(
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ): PopularMovies
+    ): MovieList
 
     @GET(MOVIE_UPCOMING)
     suspend fun getUpcomingMovies(
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ): UpcomingMovies
+    ): MovieList
 
     @GET(MOVIE_DETAILS)
     suspend fun getMovieDetails(
@@ -69,7 +61,7 @@ interface MovieApi {
         @Query("query") searchQuery: String,
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ): SearchMovies
+    ): MovieList
 
     /* TV SERIES */
 
@@ -77,25 +69,25 @@ interface MovieApi {
     suspend fun getTrendingTvSeriesDay(
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ): TrendingTvSeriesDay
+    ): TvSeriesList
 
     @GET(TV_AIRING_TODAY)
     suspend fun getAiringTodayTvSeries(
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ): AiringTodayTvSeries
+    ): TvSeriesList
 
     @GET(TV_ON_THE_AIR)
     suspend fun getOnTheAirTvSeries(
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ): OnTheAirTvSeries
+    ): TvSeriesList
 
     @GET(TV_POPULAR)
     suspend fun getPopularTvSeries(
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ): PopularTvSeries
+    ): TvSeriesList
 
     @GET(TV_SERIES_DETAILS)
     suspend fun getTvSeriesDetails(
@@ -109,5 +101,5 @@ interface MovieApi {
         @Query("query") searchQuery: String,
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = API_KEY
-    ): SearchTvSeries
+    ): TvSeriesList
 }

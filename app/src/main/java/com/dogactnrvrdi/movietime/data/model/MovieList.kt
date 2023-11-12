@@ -1,9 +1,9 @@
-package com.dogactnrvrdi.movietime.data.model.popular
+package com.dogactnrvrdi.movietime.data.model
 
 import com.dogactnrvrdi.movietime.data.model.Movie
 import com.google.gson.annotations.SerializedName
 
-data class PopularMovies(
+data class MovieList(
     val page: Int,
     val results: List<Movie>,
     @SerializedName("total_pages") val totalPages: Int,

@@ -131,7 +131,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 trendingMoviesAdapter.recyclerListDiffer.submitList(trendingMovies.results)
             }
 
-            nowPlayingMovies.observe(viewLifecycleOwner) { nowPlayingMovies ->
+            movieList.observe(viewLifecycleOwner) { nowPlayingMovies ->
                 nowPlayingMoviesAdapter.recyclerListDiffer.submitList(nowPlayingMovies.results)
             }
 
@@ -148,7 +148,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 trendingTvSeriesAdapter.recyclerListDiffer.submitList(trendingTvSeries.results)
             }
 
-            airingTodayTvSeries.observe(viewLifecycleOwner) { airingTodayTvSeries ->
+            tvSeriesList.observe(viewLifecycleOwner) { airingTodayTvSeries ->
                 airingTodayTvSeriesAdapter.recyclerListDiffer.submitList(airingTodayTvSeries.results)
             }
 
